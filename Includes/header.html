@@ -1,0 +1,47 @@
+<?php
+    session_start();
+
+    if (!isset($page_title)) $page_title = 'WoW::World of Widgets!';
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <?php echo $page_title; ?>
+        </title>
+        <link href="Includes/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="all">
+            <div class="box">
+                <div class="menu">
+                    <a href="#">home</a><a href="#">about</a><a href="#">products</a><a href="#">contact</a>
+                </div>
+                <div class="header">
+                    <img src="www.jpg" style="float:right;" width="225" height="95" />
+                    <h1>[<span class="style1">WoW</span>]World of Widgets</h1>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="newsbar">
+                    <h1>Browse Widget Categories</h1>
+                    <div class="p2">
+                        <ul>
+                            <?php
+                                $q = "SELECT category_id,category FROM categories ORDER BY category";
+                                $r = mysqli_query($db,$q);
+                                
+                                while ($row = mysqli_fetch_assoc($r)){
+                                   echo  '<li><a href="category.php?cid=' . $row['category_id'] . '">' . $row['category'] . '</a></li><br />';
+                                    
+                                }
+                            ?>
+                        </ul>
+                    </div>
+                    <h1>Cart Contents?</h1>
+                    <div class="p2">You could use this area to show something regarding the cart</div>
+                    <h1>Specials?</h1>
+                    <div class="p2">
+                        <p>Maybe place specials or new items  or related items here</p>
+                    </div>
+                </div>
+                <div class="content">
